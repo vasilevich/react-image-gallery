@@ -64,6 +64,7 @@ export default class ImageGallery extends React.Component {
       thumbnailClass: string,
       renderItem: func,
       renderThumbInner: func,
+      renderOverlay: func,
       imageSet: imageSetType,
       srcSet: string,
       sizes: string,
@@ -162,6 +163,7 @@ export default class ImageGallery extends React.Component {
     renderCustomControls: null,
     renderThumbInner: null,
     renderItem: null,
+    renderOverlay: null,
     slideInterval: 3000,
     slideOnThumbnailOver: false,
     swipeThreshold: 30,
@@ -1407,6 +1409,7 @@ export default class ImageGallery extends React.Component {
       renderCustomControls,
       renderLeftNav,
       renderRightNav,
+      renderOverlay,
       showBullets,
       showFullscreenButton,
       showIndex,
@@ -1445,12 +1448,14 @@ export default class ImageGallery extends React.Component {
                 onSwiped={this.handleOnSwiped}
               >
                 <div className="image-gallery-slides">
+                  {renderOverlay?renderOverlay(this):null}
                   {slides}
                 </div>
               </SwipeWrapper>
             </React.Fragment>
           ) : (
             <div className="image-gallery-slides">
+              {renderOverlay?renderOverlay(this):null}
               {slides}
             </div>
           )
